@@ -223,7 +223,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           obscureText: _isConfirmHidden,
                           decoration: InputDecoration(
                             suffixIcon: InkWell(
-                              onTap: _togglePasswordView,
+                              onTap: _toggleConfirmPasswordView,
                               child: Icon(
                                 size: 20,
                                 _isConfirmHidden

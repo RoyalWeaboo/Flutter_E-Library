@@ -17,6 +17,10 @@ dependencies:
   firebase_core: ^2.10.0
   google_fonts: ^4.0.4
   email_validator: ^2.1.17
+  carousel_slider: ^4.2.1
+  dio: ^5.1.1
+  flutter_bloc: ^8.1.2
+  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:
@@ -29,14 +33,23 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/bookmark.png
+    - assets/bookmarked.png
     - assets/circular_main_icon.png
+    - assets/completed.png
+    - assets/example_grid.png
     - assets/completed.png
     - assets/help_icon.png
     - assets/logout_icon.png
     - assets/main_icon.png
+    - assets/no_cover.jpg
     - assets/password_icon.png
     - assets/pencil_icon.png
     - assets/reading_icon.png
+    - assets/search_icon.png
+    - assets/slider_1.jpg
+    - assets/slider_2.jpg
+    - assets/slider_3.jpg
     - assets/splash_screen_icon.png
 
   # fonts:
