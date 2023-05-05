@@ -1,4 +1,4 @@
-import 'package:e_library/view/screens/home_screen.dart';
+import 'package:e_library/view/home/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

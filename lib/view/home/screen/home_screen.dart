@@ -1,8 +1,12 @@
 import 'package:e_library/view/widgets/drawer.dart';
-import 'package:e_library/view/widgets/home_grid.dart';
-import 'package:e_library/view/widgets/slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../../view_model/bloc_book/book_bloc.dart';
+import '../../../view_model/bloc_book/book_event.dart';
+import '../widgets/home_grid.dart';
+import '../widgets/slider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,6 +16,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    context.read<BookBloc>().add(
+          FetchBooks(),
+        );
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,9 +42,9 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: SafeArea(
         child: navigationDrawer(context),
       ),
-      body: Container(
-        color: Colors.white,
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Container(
+          color: Colors.white,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,

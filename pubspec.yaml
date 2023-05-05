@@ -21,6 +21,8 @@ dependencies:
   dio: ^5.1.1
   flutter_bloc: ^8.1.2
   equatable: ^2.0.5
+  intl: ^0.18.1
+  firebase_auth: ^4.2.2
 
 dev_dependencies:
   flutter_test:
@@ -37,13 +39,17 @@ flutter:
     - assets/bookmarked.png
     - assets/circular_main_icon.png
     - assets/completed.png
+    - assets/epub_icon.png
     - assets/example_grid.png
     - assets/completed.png
     - assets/help_icon.png
     - assets/logout_icon.png
     - assets/main_icon.png
     - assets/no_cover.jpg
+    - assets/no_epub_icon.png
+    - assets/no_pdf_icon.png
     - assets/password_icon.png
+    - assets/pdf_icon.png
     - assets/pencil_icon.png
     - assets/reading_icon.png
     - assets/search_icon.png

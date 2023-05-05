@@ -1,9 +1,9 @@
 import 'package:e_library/model/bookmark_model.dart';
-import 'package:e_library/view/widgets/bookmark_status.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../widgets/drawer.dart';
+import '../../widgets/drawer.dart';
+import '../widgets/bookmark_status.dart';
 
 class BookmarkScreen extends StatefulWidget {
   const BookmarkScreen({super.key});
