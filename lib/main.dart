@@ -6,6 +6,7 @@ import 'package:e_library/view/profile/screen/profile_screen.dart';
 import 'package:e_library/view/register/screen/register_screen.dart';
 import 'package:e_library/view/search/screen/search_screen.dart';
 import 'package:e_library/view/splash_screen/screen/splash_screen.dart';
+import 'package:e_library/view_model/bloc_auth/auth_bloc.dart';
 import 'package:e_library/view_model/bloc_book/book_bloc.dart';
 import 'package:e_library/view_model/bloc_search/search_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -15,6 +16,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'model/firebase/firebase_options.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -39,6 +41,11 @@ class MyApp extends StatelessWidget {
             return BookSearchBloc();
           },
         ),
+        BlocProvider(
+          create: (context) {
+            return AuthBloc();
+          },
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -49,7 +56,7 @@ class MyApp extends StatelessWidget {
             color: Color.fromARGB(255, 255, 255, 255),
           ),
         ),
-        initialRoute: 'home',
+        initialRoute: '/',
         routes: {
           '/': (_) => const SplashScreen(),
           'login': (_) => const LoginScreen(),

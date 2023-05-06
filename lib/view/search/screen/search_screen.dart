@@ -198,7 +198,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 padding: const EdgeInsets.only(
                   bottom: 16,
                 ),
-                child: searchResults(context, "", ""),
+                child: searchResults(context),
               ),
             ],
           ),

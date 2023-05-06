@@ -10,7 +10,7 @@ import '../../book_detail/widgets/book_image.dart';
 import 'book_availability.dart';
 import 'book_type.dart';
 
-Widget searchResults(BuildContext context, String query, String subject) {
+Widget searchResults(BuildContext context) {
   return BlocBuilder<BookSearchBloc, BookSearchState>(
     builder: (context, state) {
       if (state is LoadingState) {

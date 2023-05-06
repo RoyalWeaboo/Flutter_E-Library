@@ -1,3 +1,4 @@
+import 'package:e_library/view/home/widgets/user.dart';
 import 'package:e_library/view/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -53,14 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.only(right: 16, top: 8),
                 child: Align(
                   alignment: Alignment.centerRight,
-                  child: Text(
-                    "Hello, User",
-                    style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18,
-                      color: const Color.fromARGB(255, 0, 0, 0),
-                    ),
-                  ),
+                  child: userName(context),
                 ),
               ),
               SizedBox(
