@@ -1,4 +1,3 @@
-import 'package:e_library/view/home/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -36,6 +35,7 @@ Widget navigationDrawer(BuildContext context) {
             "Home",
             style: GoogleFonts.inter(
               fontWeight: FontWeight.w500,
+              fontSize: 16,
             ),
           ),
           onTap: () {
@@ -47,6 +47,7 @@ Widget navigationDrawer(BuildContext context) {
             "Search",
             style: GoogleFonts.inter(
               fontWeight: FontWeight.w500,
+              fontSize: 16,
             ),
           ),
           onTap: () {
@@ -58,6 +59,7 @@ Widget navigationDrawer(BuildContext context) {
             "Bookmarks",
             style: GoogleFonts.inter(
               fontWeight: FontWeight.w500,
+              fontSize: 16,
             ),
           ),
           onTap: () {
@@ -69,6 +71,7 @@ Widget navigationDrawer(BuildContext context) {
             "Profile",
             style: GoogleFonts.inter(
               fontWeight: FontWeight.w500,
+              fontSize: 16,
             ),
           ),
           onTap: () {

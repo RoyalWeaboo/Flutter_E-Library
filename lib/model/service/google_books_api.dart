@@ -18,7 +18,7 @@ class GoogleBooksApi {
     try {
       final Response response = await dio
           .get("https://www.googleapis.com/books/v1/volumes?q=$subject:$query");
-      print(response.data);
+
       return GoogleBooks.fromJson(response.data);
     } catch (e) {
       rethrow;

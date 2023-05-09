@@ -1,8 +1,10 @@
 import 'package:e_library/view/widgets/drawer.dart';
+import 'package:e_library/view_model/radio_button_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
+import '../../../model/constant/search_subject.dart';
 import '../../../view_model/bloc_search/search_bloc.dart';
 import '../../../view_model/bloc_search/search_event.dart';
 import '../widgets/search_results.dart';
@@ -14,14 +16,13 @@ class SearchScreen extends StatefulWidget {
   State<SearchScreen> createState() => _SearchScreenState();
 }
 
-enum SearchSubject { title, author, subject }
-
 class _SearchScreenState extends State<SearchScreen> {
   final searchController = TextEditingController();
-  SearchSubject _subject = SearchSubject.title;
 
   @override
   Widget build(BuildContext context) {
+    final radioButtonProvider = Provider.of<RadioButtonProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.black),
@@ -50,12 +51,12 @@ class _SearchScreenState extends State<SearchScreen> {
                 elevation: 5,
                 child: TextFormField(
                   onFieldSubmitted: (value) {
-                    if (_subject == SearchSubject.title) {
+                    if (radioButtonProvider.subject == SearchSubject.title) {
                       context.read<BookSearchBloc>().add(
                             SearchBooks(value, "intitle"),
                           );
                     }
-                    if (_subject == SearchSubject.author) {
+                    if (radioButtonProvider.subject == SearchSubject.author) {
                       context.read<BookSearchBloc>().add(
                             SearchBooks(value, "inauthor"),
                           );
@@ -106,92 +107,87 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                child: Consumer<RadioButtonProvider>(
+                  builder: (context, radioButton, _) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Transform.scale(
-                          scale: 0.8,
-                          child: Radio<SearchSubject>(
-                            value: SearchSubject.title,
-                            groupValue: _subject,
-                            onChanged: (SearchSubject? value) {
-                              setState(() {
-                                _subject = value!;
-                                print(value);
-                              });
-                            },
-                          ),
-                        ),
-                        Transform.translate(
-                          offset: const Offset(-10, 0),
-                          child: Text(
-                            "Title",
-                            style: GoogleFonts.inter(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Transform.scale(
+                              scale: 0.8,
+                              child: Radio<SearchSubject>(
+                                value: SearchSubject.title,
+                                groupValue: radioButton.subject,
+                                onChanged: (SearchSubject? val) {
+                                  radioButton.subject = val!;
+                                },
+                              ),
                             ),
-                          ),
+                            Transform.translate(
+                              offset: const Offset(-10, 0),
+                              child: Text(
+                                "Title",
+                                style: GoogleFonts.inter(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Transform.scale(
+                              scale: 0.8,
+                              child: Radio<SearchSubject>(
+                                value: SearchSubject.author,
+                                groupValue: radioButton.subject,
+                                onChanged: (SearchSubject? val) {
+                                  radioButton.subject = val!;
+                                },
+                              ),
+                            ),
+                            Transform.translate(
+                              offset: const Offset(-10, 0),
+                              child: Text(
+                                "Author",
+                                style: GoogleFonts.inter(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Transform.scale(
+                              scale: 0.8,
+                              child: Radio<SearchSubject>(
+                                value: SearchSubject.subject,
+                                groupValue: radioButton.subject,
+                                onChanged: (SearchSubject? val) {
+                                  radioButton.subject = val!;
+                                },
+                              ),
+                            ),
+                            Transform.translate(
+                              offset: const Offset(-10, 0),
+                              child: Text(
+                                "Subject",
+                                style: GoogleFonts.inter(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
-                    ),
-                    Row(
-                      children: [
-                        Transform.scale(
-                          scale: 0.8,
-                          child: Radio<SearchSubject>(
-                            value: SearchSubject.author,
-                            groupValue: _subject,
-                            onChanged: (SearchSubject? value) {
-                              setState(() {
-                                _subject = value!;
-                                print(value);
-                              });
-                            },
-                          ),
-                        ),
-                        Transform.translate(
-                          offset: const Offset(-10, 0),
-                          child: Text(
-                            "Author",
-                            style: GoogleFonts.inter(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Transform.scale(
-                          scale: 0.8,
-                          child: Radio<SearchSubject>(
-                            value: SearchSubject.subject,
-                            groupValue: _subject,
-                            onChanged: (SearchSubject? value) {
-                              setState(() {
-                                _subject = value!;
-                                print(value);
-                              });
-                            },
-                          ),
-                        ),
-                        Transform.translate(
-                          offset: const Offset(-10, 0),
-                          child: Text(
-                            "Subject",
-                            style: GoogleFonts.inter(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                    );
+                  },
                 ),
               ),
               Padding(

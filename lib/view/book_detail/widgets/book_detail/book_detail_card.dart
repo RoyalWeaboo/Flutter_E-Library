@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../view_model/bloc_book/book_bloc.dart';
-import '../../../view_model/bloc_book/book_state.dart';
+import '../../../../view_model/bloc_book/book_bloc.dart';
+import '../../../../view_model/bloc_book/book_state.dart';
 
 Widget bookDetailCard(VolumeInfo volumeInfo) {
   return BlocBuilder<BookBloc, BookState>(
@@ -98,7 +98,7 @@ Widget bookPage(VolumeInfo volumeInfo) {
     );
   } else {
     return Text(
-      "Unavailable",
+      "-",
       style: GoogleFonts.inter(
         fontWeight: FontWeight.w500,
         color: const Color(0xff0C0D36),
@@ -137,7 +137,7 @@ Widget bookLanguage(VolumeInfo volumeInfo) {
     }
   } else {
     return Text(
-      "Unavailable",
+      "-",
       style: GoogleFonts.inter(
         fontWeight: FontWeight.w500,
         color: const Color(0xff0C0D36),
@@ -157,7 +157,7 @@ Widget bookPublishedDate(VolumeInfo volumeInfo) {
     );
   } else {
     return Text(
-      "Unavailable",
+      "-",
       style: GoogleFonts.inter(
         fontWeight: FontWeight.w500,
         color: const Color(0xff0C0D36),

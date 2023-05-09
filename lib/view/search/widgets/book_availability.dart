@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Widget bookAvailability(String viweability) {
-  if (viweability == "ALL_PAGES") {
+Widget bookAvailability(String viewability) {
+  if (viewability == "ALL_PAGES") {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
@@ -23,7 +23,7 @@ Widget bookAvailability(String viweability) {
       ],
     );
   }
-  if (viweability == "PARTIAL") {
+  if (viewability == "PARTIAL") {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [

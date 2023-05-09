@@ -1,3 +1,5 @@
+import 'package:e_library/view/profile/widgets/customer_service.dart';
+import 'package:e_library/view/profile/widgets/reset_password.dart';
 import 'package:e_library/view_model/bloc_auth/auth_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -77,23 +79,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 8),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "User Info",
-                              style: GoogleFonts.inter(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 16,
-                              ),
-                            ),
-                            IconButton(
-                                onPressed: () {},
-                                icon: const Image(
-                                  image: AssetImage('assets/pencil_icon.png'),
-                                ))
-                          ],
+                        padding:
+                            const EdgeInsets.only(left: 8, top: 8, bottom: 8),
+                        child: Text(
+                          "User Info",
+                          style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
                       Card(
@@ -125,7 +118,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   height: 4,
                                 ),
                                 Text(
-                                  "user",
+                                  state.userData.username,
                                   style: GoogleFonts.inter(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 14,
@@ -168,7 +161,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   height: 4,
                                 ),
                                 Text(
-                                  "user-email@elibrary.user.id",
+                                  state.userData.email,
                                   style: GoogleFonts.inter(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 14,
@@ -210,13 +203,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 16),
-                                child: Text(
-                                  "Change Password",
-                                  style: GoogleFonts.inter(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 15,
-                                  ),
-                                ),
+                                child: changePassword(context),
                               ),
                             ],
                           ),
@@ -243,13 +230,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 16),
-                                child: Text(
-                                  "Customer Service",
-                                  style: GoogleFonts.inter(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 15,
-                                  ),
-                                ),
+                                child: customerService(context),
                               ),
                             ],
                           ),
@@ -304,7 +285,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: height,
                 width: width,
                 color: Colors.white,
-                child: const Text("Something is Wrong"),
               );
             }
           },

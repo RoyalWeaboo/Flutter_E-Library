@@ -6,7 +6,7 @@ Widget bookImage(VolumeInfo volumeInfo) {
     return Image(
       height: 200,
       width: 130,
-      fit: BoxFit.scaleDown,
+      fit: BoxFit.cover,
       image: NetworkImage(volumeInfo.imageLinks!.thumbnail!),
     );
   } else {

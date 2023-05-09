@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../book_detail/widgets/book_details.dart';
-import '../../book_detail/widgets/book_image.dart';
+import '../../book_detail/widgets/book_detail/book_details.dart';
+import '../../book_detail/widgets/book_detail/book_image.dart';
 import 'book_availability.dart';
 import 'book_type.dart';
 

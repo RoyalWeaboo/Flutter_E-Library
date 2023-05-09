@@ -12,7 +12,7 @@ Widget userName(BuildContext context) {
       }
       if (state is AuthenticatedState) {
         return Text(
-          "Hello, ${state.user.email}",
+          "Hello, ${state.userData.username}",
           style: GoogleFonts.inter(
             fontWeight: FontWeight.w600,
             fontSize: 18,
@@ -32,3 +32,20 @@ Widget userName(BuildContext context) {
     },
   );
 }
+// Future<String> getUser() async {
+//   final prefs = await SharedPreferences.getInstance();
+//   final nama = prefs.getString('userId') ?? "gakada";
+//   return nama;
+// }
+
+// Widget userName(BuildContext context) {
+//   String nama = ge
+//   return Text(
+//     "Hello, $nama",
+//     style: GoogleFonts.inter(
+//       fontWeight: FontWeight.w600,
+//       fontSize: 18,
+//       color: const Color.fromARGB(255, 0, 0, 0),
+//     ),
+//   );
+// }
