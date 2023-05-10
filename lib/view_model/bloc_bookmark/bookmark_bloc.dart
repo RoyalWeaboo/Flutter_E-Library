@@ -102,12 +102,12 @@ class BookmarkBloc extends Bloc<BookmarkEvent, BookmarkState> {
         if (user != null) {
           final querySnapshot =
               await collection.doc(user.uid).collection("bookmarks").get();
-
           if (querySnapshot.docs.isNotEmpty) {
             final List<DocumentSnapshot> documents = querySnapshot.docs;
             List<Bookmark> bookmarks = (documents)
                 .map(
                   (e) => Bookmark(
+                    authors: e['authors'],
                     bookId: e['book_id'],
                     bookImageUrl: e['book_image'],
                     bookTitle: e['book_title'],
@@ -117,6 +117,7 @@ class BookmarkBloc extends Bloc<BookmarkEvent, BookmarkState> {
                     notes: e['notes'],
                     viewAbility: e['viewability'],
                     readingStatus: e['reading_status'],
+                    saleAbility: e['saleability'],
                   ),
                 )
                 .toList();
@@ -125,11 +126,11 @@ class BookmarkBloc extends Bloc<BookmarkEvent, BookmarkState> {
               SuccessState(data: bookmarks),
             );
           } else {
-            const ErrorState(message: "No Data");
+            emit(EmptyBookmarkState());
           }
         }
       } on Exception catch (e) {
-        ErrorState(message: e.toString());
+        emit(ErrorState(message: e.toString()));
       }
     });
 
@@ -154,11 +155,11 @@ class BookmarkBloc extends Bloc<BookmarkEvent, BookmarkState> {
               SuccessState(data: bookData),
             );
           } else {
-            const ErrorState(message: "No Data");
+            emit(const ErrorState(message: "No Data"));
           }
         }
       } on Exception catch (e) {
-        ErrorState(message: e.toString());
+        emit(ErrorState(message: e.toString()));
       }
     });
 
@@ -188,7 +189,7 @@ class BookmarkBloc extends Bloc<BookmarkEvent, BookmarkState> {
           );
         }
       } on Exception catch (e) {
-        ErrorState(message: e.toString());
+        emit(ErrorState(message: e.toString()));
       }
     });
   }

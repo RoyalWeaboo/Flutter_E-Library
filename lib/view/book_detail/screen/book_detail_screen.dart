@@ -10,7 +10,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 import '../widgets/book_detail/book_detail_description.dart';
-import '../widgets/book_detail/book_details.dart';
 import '../widgets/book_detail/book_detail_card.dart';
 import '../widgets/book_detail/book_image.dart';
 
@@ -44,6 +43,19 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
     final height = size.height;
     final width = size.width;
     final Items args = ModalRoute.of(context)!.settings.arguments as Items;
+    String authors = "";
+
+    if (args.volumeInfo!.authors != null) {
+      int authorCount = args.volumeInfo!.authors?.length ?? 0;
+      if (authorCount == 1) {
+        authors = args.volumeInfo!.authors![0];
+      }
+      if (authorCount > 1) {
+        authors = "${args.volumeInfo!.authors![0]} & $authorCount others";
+      }
+    } else {
+      authors = "Unknown";
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -114,6 +126,7 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
                                       _showSnackbar,
                                       args.id!,
                                       Bookmark(
+                                          authors: authors,
                                           bookId: args.id!,
                                           bookImageUrl: args.volumeInfo!
                                               .imageLinks!.thumbnail!,
@@ -126,6 +139,9 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
                                           viewAbility:
                                               args.accessInfo!.viewability ??
                                                   "NO_PAGES",
+                                          saleAbility:
+                                              args.saleInfo!.saleability ??
+                                                  "NOT_FOR_SALE",
                                           readingStatus: true,
                                           bookUrl: args.volumeInfo!
                                                   .canonicalVolumeLink ??
@@ -135,7 +151,32 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
                               const SizedBox(
                                 height: 4,
                               ),
-                              bookDetail(args.volumeInfo!),
+                              RichText(
+                                text: TextSpan(
+                                  style: const TextStyle(
+                                    fontSize: 14.0,
+                                  ),
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                      text: "by ",
+                                      style: GoogleFonts.inter(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: authors,
+                                      style: GoogleFonts.playfairDisplay(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14,
+                                        fontStyle: FontStyle.italic,
+                                        color: const Color(0xff3879E9),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                               const SizedBox(
                                 height: 16,
                               ),
@@ -174,7 +215,7 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
                 child: Padding(
                   padding: const EdgeInsets.only(
                       left: 16, right: 16, top: 12, bottom: 12),
-                  child: bookDetailButton(args.accessInfo!),
+                  child: bookDetailButton(context, args),
                 )),
           ),
         ],

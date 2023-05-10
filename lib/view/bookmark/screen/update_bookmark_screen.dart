@@ -40,6 +40,7 @@ class _UpdateBookmarkScreenState extends State<UpdateBookmarkScreen> {
         }
       } else {
         bookData = Bookmark(
+            authors: "",
             bookId: "",
             bookImageUrl: "",
             bookTitle: "",
@@ -47,6 +48,7 @@ class _UpdateBookmarkScreenState extends State<UpdateBookmarkScreen> {
             page: "",
             readingStatus: false,
             bookUrl: "",
+            saleAbility: "",
             notes: "",
             viewAbility: "");
       }
@@ -274,6 +276,7 @@ class _UpdateBookmarkScreenState extends State<UpdateBookmarkScreen> {
                                 EditBookmark(
                                   bookData!.bookId,
                                   Bookmark(
+                                      authors: bookData!.authors,
                                       bookId: bookData!.bookId,
                                       bookImageUrl: bookData!.bookImageUrl,
                                       bookTitle: bookData!.bookTitle,
@@ -283,6 +286,7 @@ class _UpdateBookmarkScreenState extends State<UpdateBookmarkScreen> {
                                       page: pageController.text,
                                       readingStatus: radioButton.reading,
                                       bookUrl: bookData!.bookUrl,
+                                      saleAbility: bookData!.saleAbility,
                                       notes: notesController.text,
                                       viewAbility: bookData!.viewAbility),
                                 ),

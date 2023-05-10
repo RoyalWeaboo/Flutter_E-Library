@@ -92,6 +92,35 @@ Widget bookmarkDetail(BuildContext context) {
                   const SizedBox(
                     height: 8,
                   ),
+                  RichText(
+                    text: TextSpan(
+                      style: const TextStyle(
+                        fontSize: 14.0,
+                      ),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: "by ",
+                          style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14,
+                            color: Colors.black,
+                          ),
+                        ),
+                        TextSpan(
+                          text: data.authors,
+                          style: GoogleFonts.playfairDisplay(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14,
+                            fontStyle: FontStyle.italic,
+                            color: const Color(0xff3879E9),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

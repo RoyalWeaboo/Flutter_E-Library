@@ -1,10 +1,11 @@
+import 'package:e_library/model/book_webpage_model.dart';
 import 'package:e_library/model/google_books_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Widget bookDetailButton(AccessInfo? accessInfo) {
-  if (accessInfo != null) {
-    if (accessInfo.viewability == "ALL_PAGES") {
+Widget bookDetailButton(BuildContext context, Items item) {
+  if (item.accessInfo != null) {
+    if (item.accessInfo!.viewability == "ALL_PAGES") {
       return Container(
         padding: const EdgeInsets.only(top: 6),
         width: double.infinity,
@@ -20,7 +21,18 @@ Widget bookDetailButton(AccessInfo? accessInfo) {
               ),
             ),
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(
+              context,
+              'webview',
+              arguments: WebBookData(
+                bookId: item.id!,
+                bookTitle: item.volumeInfo!.title!,
+                viewAbility: item.accessInfo!.viewability!,
+                saleAbility: item.saleInfo!.saleability!,
+              ),
+            );
+          },
           child: Padding(
             padding: const EdgeInsets.all(8),
             child: Text(
@@ -34,7 +46,7 @@ Widget bookDetailButton(AccessInfo? accessInfo) {
         ),
       );
     }
-    if (accessInfo.viewability == "PARTIAL") {
+    if (item.accessInfo!.viewability == "PARTIAL") {
       return Container(
         padding: const EdgeInsets.only(top: 6),
         width: double.infinity,
@@ -50,7 +62,18 @@ Widget bookDetailButton(AccessInfo? accessInfo) {
               ),
             ),
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(
+              context,
+              'webview',
+              arguments: WebBookData(
+                bookId: item.id!,
+                bookTitle: item.volumeInfo!.title!,
+                viewAbility: item.accessInfo!.viewability!,
+                saleAbility: item.saleInfo!.saleability!,
+              ),
+            );
+          },
           child: Padding(
             padding: const EdgeInsets.all(8),
             child: Text(
@@ -71,7 +94,7 @@ Widget bookDetailButton(AccessInfo? accessInfo) {
           style: ButtonStyle(
             foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
             backgroundColor: MaterialStateProperty.all<Color>(
-              const Color(0xff3879E9),
+              const Color.fromARGB(255, 152, 192, 255),
             ),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
@@ -101,7 +124,7 @@ Widget bookDetailButton(AccessInfo? accessInfo) {
         style: ButtonStyle(
           foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
           backgroundColor: MaterialStateProperty.all<Color>(
-            const Color(0xff3879E9),
+            const Color.fromARGB(255, 152, 192, 255),
           ),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(

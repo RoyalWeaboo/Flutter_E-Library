@@ -4,6 +4,10 @@ import 'package:e_library/view_model/bloc_bookmark/bookmark_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+
+import '../../../../model/book_webpage_model.dart';
+import '../../../../view_model/bloc_bookmark/bookmark_event.dart';
 
 Widget bookmarkDetailButton() {
   return BlocConsumer<BookmarkBloc, BookmarkState>(
@@ -43,7 +47,38 @@ Widget bookmarkDetailButton() {
                   ),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                context.read<BookmarkBloc>().add(
+                      EditBookmark(
+                        bookData.bookId,
+                        Bookmark(
+                            bookId: bookData.bookId,
+                            bookImageUrl: bookData.bookImageUrl,
+                            bookTitle: bookData.bookTitle,
+                            authors: bookData.authors,
+                            lastRead: DateFormat('MMM dd, yyyy')
+                                .format(DateTime.now().toLocal())
+                                .toString(),
+                            page: bookData.page,
+                            readingStatus: bookData.readingStatus,
+                            bookUrl: bookData.bookUrl,
+                            saleAbility: bookData.saleAbility,
+                            notes: bookData.notes,
+                            viewAbility: bookData.viewAbility),
+                      ),
+                    );
+
+                Navigator.pushReplacementNamed(
+                  context,
+                  'bookmarkwebview',
+                  arguments: WebBookData(
+                    bookId: bookData.bookId,
+                    bookTitle: bookData.bookTitle,
+                    viewAbility: bookData.viewAbility,
+                    saleAbility: bookData.saleAbility,
+                  ),
+                );
+              },
               child: Padding(
                 padding: const EdgeInsets.all(8),
                 child: Text(
@@ -73,7 +108,38 @@ Widget bookmarkDetailButton() {
                   ),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                context.read<BookmarkBloc>().add(
+                      EditBookmark(
+                        bookData.bookId,
+                        Bookmark(
+                            authors: bookData.authors,
+                            bookId: bookData.bookId,
+                            bookImageUrl: bookData.bookImageUrl,
+                            bookTitle: bookData.bookTitle,
+                            lastRead: DateFormat('MMM dd, yyyy')
+                                .format(DateTime.now().toLocal())
+                                .toString(),
+                            page: bookData.page,
+                            readingStatus: bookData.readingStatus,
+                            bookUrl: bookData.bookUrl,
+                            saleAbility: bookData.saleAbility,
+                            notes: bookData.notes,
+                            viewAbility: bookData.viewAbility),
+                      ),
+                    );
+
+                Navigator.pushReplacementNamed(
+                  context,
+                  'bookmarkwebview',
+                  arguments: WebBookData(
+                    bookId: bookData.bookId,
+                    bookTitle: bookData.bookTitle,
+                    viewAbility: bookData.viewAbility,
+                    saleAbility: bookData.saleAbility,
+                  ),
+                );
+              },
               child: Padding(
                 padding: const EdgeInsets.all(8),
                 child: Text(
@@ -94,7 +160,7 @@ Widget bookmarkDetailButton() {
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
                 backgroundColor: MaterialStateProperty.all<Color>(
-                  const Color(0xff3879E9),
+                  const Color.fromARGB(255, 152, 192, 255),
                 ),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(

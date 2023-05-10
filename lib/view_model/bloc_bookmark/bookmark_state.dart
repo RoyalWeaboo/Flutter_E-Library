@@ -21,6 +21,8 @@ class SuccessState extends BookmarkState {
   List<Object> get props => [data];
 }
 
+class EmptyBookmarkState extends BookmarkState {}
+
 class Bookmarked extends BookmarkState {
   final String message;
 

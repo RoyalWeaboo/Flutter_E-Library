@@ -1,11 +1,11 @@
 import 'package:e_library/model/google_books_model.dart';
+import 'package:e_library/view/search/widgets/book_detail.dart';
 import 'package:e_library/view_model/bloc_search/search_bloc.dart';
 import 'package:e_library/view_model/bloc_search/search_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../book_detail/widgets/book_detail/book_details.dart';
 import '../../book_detail/widgets/book_detail/book_image.dart';
 import 'book_availability.dart';
 import 'book_type.dart';
@@ -62,7 +62,7 @@ Widget searchResults(BuildContext context) {
                                     fontSize: 18,
                                   ),
                                 ),
-                                bookDetail(items[index].volumeInfo!),
+                                bookAuthor(items[index].volumeInfo!),
                                 bookAvailability(
                                     items[index].accessInfo!.viewability!),
                                 const SizedBox(

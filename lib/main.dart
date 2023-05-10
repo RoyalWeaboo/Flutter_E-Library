@@ -8,6 +8,8 @@ import 'package:e_library/view/profile/screen/profile_screen.dart';
 import 'package:e_library/view/register/screen/register_screen.dart';
 import 'package:e_library/view/search/screen/search_screen.dart';
 import 'package:e_library/view/splash_screen/screen/splash_screen.dart';
+import 'package:e_library/view/webview/screen/book_webview.dart';
+import 'package:e_library/view/webview/screen/bookmark_webview.dart';
 import 'package:e_library/view_model/bloc_auth/auth_bloc.dart';
 import 'package:e_library/view_model/bloc_book/book_bloc.dart';
 import 'package:e_library/view_model/bloc_bookmark/bookmark_bloc.dart';
@@ -88,6 +90,8 @@ class MyApp extends StatelessWidget {
             'updatebookmark': (_) => const UpdateBookmarkScreen(),
             'bookmark': (_) => const BookmarkScreen(),
             'profile': (_) => const ProfileScreen(),
+            'webview': (_) => const BookWebPageScreen(),
+            'bookmarkwebview': (_) => const BookmarkWebPageScreen(),
           },
         ),
       ),

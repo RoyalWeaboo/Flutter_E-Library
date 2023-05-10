@@ -138,20 +138,21 @@ Widget bookmarkItem(BuildContext context) {
               );
             },
           );
-        } else {
-          return Container(
-            height: MediaQuery.of(context).size.height * 0.7,
-            width: MediaQuery.of(context).size.width,
-            color: Colors.white,
-            child: const Center(
-              child: Text("No Books"),
-            ),
-          );
         }
+      }
+      if (state is EmptyBookmarkState) {
+        return Container(
+          height: MediaQuery.of(context).size.height * 0.8,
+          width: MediaQuery.of(context).size.width,
+          color: Colors.white,
+          child: const Center(
+            child: Text("No Books"),
+          ),
+        );
       }
 
       return Container(
-        height: MediaQuery.of(context).size.height * 0.7,
+        height: MediaQuery.of(context).size.height * 0.8,
         width: MediaQuery.of(context).size.width,
         color: Colors.white,
       );
