@@ -14,6 +14,14 @@ Widget loginState(BuildContext context) {
           ),
         );
       }
+      if (state is AuthenticatedState) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Success !"),
+          ),
+        );
+        Navigator.of(context).pushReplacementNamed('home');
+      }
     },
     child: BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
