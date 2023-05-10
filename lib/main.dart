@@ -16,6 +16,7 @@ import 'package:e_library/view_model/bloc_bookmark/bookmark_bloc.dart';
 import 'package:e_library/view_model/bloc_search/search_bloc.dart';
 import 'package:e_library/view_model/password_visibility_provider.dart';
 import 'package:e_library/view_model/radio_button_provider.dart';
+import 'package:e_library/view_model/search_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,6 +45,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => PasswordButtonProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => SearchProvider(),
         ),
       ],
       child: MultiBlocProvider(

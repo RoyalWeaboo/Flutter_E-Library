@@ -1,4 +1,3 @@
-import 'package:e_library/model/constant/search_subject.dart';
 import 'package:e_library/model/google_books_model.dart';
 import 'package:e_library/view/search/widgets/book_detail.dart';
 import 'package:e_library/view_model/bloc_search/search_bloc.dart';
@@ -13,7 +12,7 @@ import 'book_availability.dart';
 import 'book_type.dart';
 
 Widget searchResults(
-    BuildContext context, String searchValue, SearchSubject searchSubject) {
+    BuildContext context, String searchQuery, String searchSubject) {
   List data = [];
   int index = 10;
   ScrollController searchScrollController = ScrollController();
@@ -21,24 +20,10 @@ Widget searchResults(
   searchScrollController.addListener(() {
     if (searchScrollController.position.maxScrollExtent ==
         searchScrollController.position.pixels) {
-      if (searchSubject == SearchSubject.title) {
-        context.read<BookSearchBloc>().add(
-              SearchNextBook(searchValue, "intitle", index),
-            );
-        index += 10;
-      }
-      if (searchSubject == SearchSubject.author) {
-        context.read<BookSearchBloc>().add(
-              SearchNextBook(searchValue, "inauthor", index),
-            );
-        index += 10;
-      }
-      if (searchSubject == SearchSubject.subject) {
-        context.read<BookSearchBloc>().add(
-              SearchNextBook(searchValue, "subject", index),
-            );
-        index += 10;
-      }
+      context.read<BookSearchBloc>().add(
+            SearchNextBook(searchQuery, searchSubject, index),
+          );
+      index += 10;
     }
   });
   return BlocConsumer<BookSearchBloc, BookSearchState>(
