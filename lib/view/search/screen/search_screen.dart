@@ -1,5 +1,6 @@
 import 'package:e_library/view/widgets/drawer.dart';
 import 'package:e_library/view_model/radio_button_provider.dart';
+import 'package:e_library/view_model/search_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -17,12 +18,10 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  final searchController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     final radioButtonProvider = Provider.of<RadioButtonProvider>(context);
-    String searchSubject = "";
+    final searchProvider = Provider.of<SearchProvider>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -52,25 +51,27 @@ class _SearchScreenState extends State<SearchScreen> {
               child: TextFormField(
                 onFieldSubmitted: (value) {
                   if (radioButtonProvider.subject == SearchSubject.title) {
-                    searchSubject = "intitle";
+                    searchProvider.subject(radioButtonProvider.subject);
+                    searchProvider.query(value);
                     context.read<BookSearchBloc>().add(
-                          SearchBooks(value, searchSubject),
+                          SearchBooks(value, "intitle"),
                         );
                   }
                   if (radioButtonProvider.subject == SearchSubject.author) {
-                    searchSubject = "inauthor";
+                    searchProvider.subject(radioButtonProvider.subject);
+                    searchProvider.query(value);
                     context.read<BookSearchBloc>().add(
-                          SearchBooks(value, searchSubject),
+                          SearchBooks(value, "inauthor"),
                         );
                   }
                   if (radioButtonProvider.subject == SearchSubject.subject) {
-                    searchSubject = "subject";
+                    searchProvider.subject(radioButtonProvider.subject);
+                    searchProvider.query(value);
                     context.read<BookSearchBloc>().add(
-                          SearchBooks(value, searchSubject),
+                          SearchBooks(value, "subject"),
                         );
                   }
                 },
-                controller: searchController,
                 decoration: const InputDecoration(
                   prefixIcon: Image(
                     image: AssetImage("assets/search_icon.png"),
@@ -103,9 +104,6 @@ class _SearchScreenState extends State<SearchScreen> {
                     return 'This field cant be empty';
                   }
                   return null;
-                },
-                onSaved: (value) {
-                  searchController.text = value!;
                 },
               ),
             ),
@@ -201,8 +199,8 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
                 child: searchResults(
                   context,
-                  searchController.text,
-                  radioButtonProvider.subject,
+                  searchProvider.searchQuery,
+                  searchProvider.searchSubject,
                 ),
               ),
             ),

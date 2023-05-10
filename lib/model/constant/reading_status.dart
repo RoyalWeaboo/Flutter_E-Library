@@ -1,1 +1,0 @@
-enum ReadingStatus { reading, completed }
