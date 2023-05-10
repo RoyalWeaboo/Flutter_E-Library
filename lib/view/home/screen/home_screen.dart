@@ -43,58 +43,58 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: SafeArea(
         child: navigationDrawer(context),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          color: Colors.white,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 16, top: 8),
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: userName(context),
-                ),
+      body: Container(
+        color: Colors.white,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 16, top: 8),
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: userName(context),
               ),
-              SizedBox(
-                height: 160,
-                child: homeSlider(),
+            ),
+            SizedBox(
+              height: 160,
+              child: homeSlider(),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 8,
+                left: 32,
+                right: 32,
               ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 8,
-                  left: 32,
-                  right: 32,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Recommended Books",
-                      style: GoogleFonts.playfairDisplay(
-                        fontStyle: FontStyle.italic,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 20,
-                      ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Recommended Books",
+                    style: GoogleFonts.playfairDisplay(
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 20,
                     ),
-                    const Image(
-                      image: AssetImage("assets/main_icon.png"),
-                    ),
-                  ],
-                ),
+                  ),
+                  const Image(
+                    image: AssetImage("assets/main_icon.png"),
+                  ),
+                ],
               ),
-              Padding(
+            ),
+            Expanded(
+              child: Padding(
                 padding: const EdgeInsets.only(
                   top: 16,
-                  bottom: 32,
+                  bottom: 16,
                   left: 16,
                   right: 16,
                 ),
                 child: homeGrid(context),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

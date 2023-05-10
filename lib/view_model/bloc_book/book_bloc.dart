@@ -20,5 +20,18 @@ class BookBloc extends Bloc<BookEvent, BookState> {
         );
       },
     );
+
+    on<FetchNextBooks>(
+      (event, emit) async {
+        emit(LoadingState());
+
+        final GoogleBooks response =
+            await googleBooksApi.getBooks("Games", startIndex: event.index);
+
+        emit(
+          SuccessState(googleBooks: response),
+        );
+      },
+    );
   }
 }

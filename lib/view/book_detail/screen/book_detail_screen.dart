@@ -128,8 +128,9 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
                                       Bookmark(
                                           authors: authors,
                                           bookId: args.id!,
-                                          bookImageUrl: args.volumeInfo!
-                                              .imageLinks!.thumbnail!,
+                                          bookImageUrl: args.volumeInfo
+                                                  ?.imageLinks?.thumbnail ??
+                                              "",
                                           bookTitle: args.volumeInfo!.title!,
                                           lastRead: DateFormat('MMM dd, yyyy')
                                               .format(DateTime.now().toLocal())

@@ -13,8 +13,30 @@ class BookSearchBloc extends Bloc<BookSearchEvent, BookSearchState> {
       (event, emit) async {
         emit(LoadingState());
 
-        final GoogleBooks response =
-            await googleBooksApi.getBooksBySubject(event.query, event.subject);
+        try {
+          final GoogleBooks response = await googleBooksApi.getBooksBySubject(
+              event.query, event.subject);
+
+          emit(
+            SuccessState(googleBooks: response),
+          );
+        } catch (e) {
+          emit(
+            ErrorState(),
+          );
+        }
+      },
+    );
+
+    on<SearchNextBook>(
+      (event, emit) async {
+        emit(LoadingState());
+
+        final GoogleBooks response = await googleBooksApi.getBooksBySubject(
+          event.query,
+          event.subject,
+          startIndex: event.index,
+        );
 
         emit(
           SuccessState(googleBooks: response),

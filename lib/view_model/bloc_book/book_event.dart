@@ -8,3 +8,9 @@ abstract class BookEvent extends Equatable {
 }
 
 class FetchBooks extends BookEvent {}
+
+class FetchNextBooks extends BookEvent {
+  final int index;
+
+  const FetchNextBooks(this.index);
+}

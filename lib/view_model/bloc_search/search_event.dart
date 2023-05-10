@@ -13,3 +13,11 @@ class SearchBooks extends BookSearchEvent {
 
   const SearchBooks(this.query, this.subject);
 }
+
+class SearchNextBook extends BookSearchEvent {
+  final String query;
+  final String subject;
+  final int index;
+
+  const SearchNextBook(this.query, this.subject, this.index);
+}
