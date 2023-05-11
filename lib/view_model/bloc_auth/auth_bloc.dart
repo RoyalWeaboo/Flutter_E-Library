@@ -98,18 +98,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             const ErrorState(
                 message: "The account already exists for that email."),
           );
-          emit(
-            InitialState(),
-          );
         }
       } catch (e) {
         emit(
           ErrorState(
             message: e.toString(),
           ),
-        );
-        emit(
-          InitialState(),
         );
       }
     });

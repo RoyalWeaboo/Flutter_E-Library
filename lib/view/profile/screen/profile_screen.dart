@@ -185,30 +185,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       const SizedBox(
                         height: 16,
                       ),
-                      Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        color: const Color(0xffF7F9FB),
-                        elevation: 4,
-                        child: Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const Image(
-                                image: AssetImage('assets/password_icon.png'),
-                                height: 24,
-                                fit: BoxFit.fitHeight,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 16),
-                                child: changePassword(context),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                      const ChangePasswordDialog(),
                       const SizedBox(
                         height: 8,
                       ),
@@ -222,15 +199,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           padding: const EdgeInsets.all(16),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const Image(
+                            children: const [
+                              Image(
                                 image: AssetImage('assets/help_icon.png'),
                                 height: 24,
                                 fit: BoxFit.fitHeight,
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 16),
-                                child: customerService(context),
+                                padding: EdgeInsets.only(left: 16),
+                                child: CustomerServiceWidget(),
                               ),
                             ],
                           ),

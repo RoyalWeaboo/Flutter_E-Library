@@ -1,3 +1,4 @@
+import 'package:e_library/view/search/widgets/search_results.dart';
 import 'package:e_library/view/widgets/drawer.dart';
 import 'package:e_library/view_model/radio_button_provider.dart';
 import 'package:e_library/view_model/search_provider.dart';
@@ -8,7 +9,6 @@ import 'package:provider/provider.dart';
 import '../../../model/constant/search_subject.dart';
 import '../../../view_model/bloc_search/search_bloc.dart';
 import '../../../view_model/bloc_search/search_event.dart';
-import '../widgets/search_results.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -197,10 +197,9 @@ class _SearchScreenState extends State<SearchScreen> {
                 padding: const EdgeInsets.only(
                   bottom: 16,
                 ),
-                child: searchResults(
-                  context,
-                  searchProvider.searchQuery,
-                  searchProvider.searchSubject,
+                child: SearchResult(
+                  searchQuery: searchProvider.searchQuery,
+                  searchSubject: searchProvider.searchSubject,
                 ),
               ),
             ),

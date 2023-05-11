@@ -11,12 +11,30 @@ Widget userName(BuildContext context) {
         return const CircularProgressIndicator();
       }
       if (state is AuthenticatedState) {
-        return Text(
-          "Hello, ${state.userData.username}",
-          style: GoogleFonts.inter(
-            fontWeight: FontWeight.w600,
-            fontSize: 18,
-            color: const Color.fromARGB(255, 0, 0, 0),
+        return RichText(
+          text: TextSpan(
+            style: const TextStyle(
+              fontSize: 14.0,
+            ),
+            children: <TextSpan>[
+              TextSpan(
+                text: "Hello, ",
+                style: GoogleFonts.inter(
+                  fontWeight: FontWeight.w500,
+                  fontStyle: FontStyle.italic,
+                  fontSize: 18,
+                  color: Colors.black,
+                ),
+              ),
+              TextSpan(
+                text: state.userData.username,
+                style: GoogleFonts.inter(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18,
+                  color: const Color(0xff3879E9),
+                ),
+              ),
+            ],
           ),
         );
       } else {

@@ -23,11 +23,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final confirmPasswordController = TextEditingController();
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final height = size.height;
@@ -79,9 +74,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         color: Colors.transparent,
                         elevation: 5,
                         child: TextFormField(
-                          controller: usernameController,
+                          controller: emailController,
                           decoration: const InputDecoration(
-                            hintText: 'Username',
+                            hintText: 'Email',
                             fillColor: Color(0xffF7F9FB),
                             filled: true,
                             enabledBorder: OutlineInputBorder(
@@ -124,9 +119,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         color: Colors.transparent,
                         elevation: 5,
                         child: TextFormField(
-                          controller: emailController,
+                          controller: usernameController,
                           decoration: const InputDecoration(
-                            hintText: 'Email',
+                            hintText: 'Username',
                             fillColor: Color(0xffF7F9FB),
                             filled: true,
                             enabledBorder: OutlineInputBorder(
@@ -280,10 +275,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(24),
+                const Padding(
+                  padding: EdgeInsets.all(24),
                   child: Center(
-                    child: registerState(context),
+                    child: RegisterState(),
                   ),
                 ),
                 const Spacer(),

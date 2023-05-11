@@ -31,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.only(top: 32, left: 32, right: 32),
-            height: height * 0.9,
+            height: height,
             width: width,
             color: Colors.white,
             child: Column(
@@ -171,87 +171,87 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8, top: 8),
-                  child: forgotPassword(context),
+                const Padding(
+                  padding: EdgeInsets.only(left: 8, top: 8),
+                  child: ForgotPasswordDialog(),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(24),
+                const Padding(
+                  padding: EdgeInsets.all(24),
                   child: Center(
-                    child: loginState(context),
+                    child: LoginState(),
                   ),
                 ),
                 const Spacer(),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 64),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                            foregroundColor:
-                                MaterialStateProperty.all<Color>(Colors.white),
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                              const Color(0xff3879E9),
-                            ),
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          foregroundColor:
+                              MaterialStateProperty.all<Color>(Colors.white),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                            const Color(0xff3879E9),
+                          ),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
                             ),
                           ),
-                          onPressed: () {
-                            if (formKey.currentState!.validate()) {
-                              context.read<AuthBloc>().add(
-                                    Login(emailController.text,
-                                        passwordController.text),
-                                  );
-                            }
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(14),
-                            child: Text(
-                              "Login",
-                              style: GoogleFonts.inter(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16,
-                              ),
+                        ),
+                        onPressed: () {
+                          if (formKey.currentState!.validate()) {
+                            context.read<AuthBloc>().add(
+                                  Login(emailController.text,
+                                      passwordController.text),
+                                );
+                          }
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(14),
+                          child: Text(
+                            "Login",
+                            style: GoogleFonts.inter(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
                             ),
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 4,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            "Don't have an account ?",
+                    ),
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          "Don't have an account ?",
+                          style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w500,
+                            color: const Color.fromARGB(125, 0, 0, 0),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context)
+                                .pushReplacementNamed('register');
+                          },
+                          child: Text(
+                            " Register",
                             style: GoogleFonts.inter(
                               fontWeight: FontWeight.w500,
-                              color: const Color.fromARGB(125, 0, 0, 0),
+                              color: const Color(0xff3879E9),
                             ),
                           ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.of(context)
-                                  .pushReplacementNamed('register');
-                            },
-                            child: Text(
-                              " Register",
-                              style: GoogleFonts.inter(
-                                fontWeight: FontWeight.w500,
-                                color: const Color(0xff3879E9),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 16,
                 ),
               ],
             ),

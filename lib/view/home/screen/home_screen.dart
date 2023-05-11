@@ -83,15 +83,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            Expanded(
+            const Expanded(
               child: Padding(
-                padding: const EdgeInsets.only(
+                padding: EdgeInsets.only(
                   top: 16,
                   bottom: 16,
                   left: 16,
                   right: 16,
                 ),
-                child: homeGrid(context),
+                child: HomeGrid(),
               ),
             ),
           ],

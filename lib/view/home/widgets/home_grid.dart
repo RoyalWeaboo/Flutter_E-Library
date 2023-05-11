@@ -7,74 +7,79 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../book_detail/widgets/book_detail/book_image.dart';
 
-Widget homeGrid(BuildContext context) {
-  List data = [];
-  int index = 10;
-  ScrollController scrollController = ScrollController();
+class HomeGrid extends StatelessWidget {
+  const HomeGrid({super.key});
 
-  scrollController.addListener(() {
-    if (scrollController.position.maxScrollExtent ==
-        scrollController.position.pixels) {
-      context.read<BookBloc>().add(
-            FetchNextBooks(index),
-          );
-      index += 10;
-    }
-  });
+  @override
+  Widget build(BuildContext context) {
+    List data = [];
+    int index = 10;
+    ScrollController scrollController = ScrollController();
 
-  return BlocConsumer<BookBloc, BookState>(
-    builder: (context, state) {
-      return Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Expanded(
-            child: GridView.builder(
-              controller: scrollController,
-              shrinkWrap: true,
-              itemCount: data.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(left: 24, right: 24, top: 8),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: Card(
-                      color: const Color(0xffF7F9FB),
-                      elevation: 8,
-                      child: InkWell(
-                        child: bookImage(data[index].volumeInfo!),
-                        onTap: () => Navigator.of(context)
-                            .pushNamed('bookdetail', arguments: data[index]),
+    scrollController.addListener(() {
+      if (scrollController.position.maxScrollExtent ==
+          scrollController.position.pixels) {
+        context.read<BookBloc>().add(
+              FetchNextBooks(index),
+            );
+        index += 10;
+      }
+    });
+
+    return BlocConsumer<BookBloc, BookState>(
+      builder: (context, state) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Expanded(
+              child: GridView.builder(
+                controller: scrollController,
+                shrinkWrap: true,
+                itemCount: data.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(left: 24, right: 24, top: 8),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Card(
+                        color: const Color(0xffF7F9FB),
+                        elevation: 8,
+                        child: InkWell(
+                          child: bookImage(data[index].volumeInfo!),
+                          onTap: () => Navigator.of(context)
+                              .pushNamed('bookdetail', arguments: data[index]),
+                        ),
                       ),
                     ),
-                  ),
-                );
-              },
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2),
+                  );
+                },
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2),
+              ),
             ),
-          ),
-          Visibility(
-            visible: state is LoadingState,
-            child: const Center(
-              child: CircularProgressIndicator(),
+            Visibility(
+              visible: state is LoadingState,
+              child: const Center(
+                child: CircularProgressIndicator(),
+              ),
             ),
-          ),
-        ],
-      );
-    },
-    listener: (context, state) {
-      if (state is SuccessState) {
-        List<Items> items = state.googleBooks.items!;
-
-        data.addAll(items);
-      }
-      if (state is ErrorState) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text("Something is wrong, try again later"),
-          ),
+          ],
         );
-      }
-    },
-  );
+      },
+      listener: (context, state) {
+        if (state is SuccessState) {
+          List<Items> items = state.googleBooks.items!;
+
+          data.addAll(items);
+        }
+        if (state is ErrorState) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("Something is wrong, try again later"),
+            ),
+          );
+        }
+      },
+    );
+  }
 }

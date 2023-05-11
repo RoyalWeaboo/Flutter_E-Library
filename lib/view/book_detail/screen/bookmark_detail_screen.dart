@@ -45,8 +45,8 @@ class _BookmarkBookDetailScreenState extends State<BookmarkBookDetailScreen> {
             flex: 9,
             child: Container(
               color: Colors.white,
-              child: SingleChildScrollView(
-                child: bookmarkDetail(context),
+              child: const SingleChildScrollView(
+                child: BookmarkDetail(),
               ),
             ),
           ),

@@ -4,19 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-Widget customerService(BuildContext context) {
-  return InkWell(
-    onTap: () async {
-      await whatsapp(context);
-    },
-    child: Text(
-      "Customer Service",
-      style: GoogleFonts.inter(
-        fontWeight: FontWeight.w500,
-        fontSize: 15,
+class CustomerServiceWidget extends StatelessWidget {
+  const CustomerServiceWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () async {
+        await whatsapp(context);
+      },
+      child: Text(
+        "Customer Service",
+        style: GoogleFonts.inter(
+          fontWeight: FontWeight.w500,
+          fontSize: 15,
+        ),
       ),
-    ),
-  );
+    );
+  }
 }
 
 whatsapp(BuildContext context) async {

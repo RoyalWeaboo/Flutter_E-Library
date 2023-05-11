@@ -66,7 +66,7 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
                   ),
                 ),
               ),
-              bookmarkItem(context),
+              const BookmarkItem(),
             ],
           ),
         ),
